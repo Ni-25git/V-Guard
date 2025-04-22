@@ -6,6 +6,7 @@ const connectDB = require('./db');
 const safetyDashboard = require('./routes/safetyDashboardRouter');
 const production = require('./routes/productionRouter');
 const cors = require('cors');
+const dotenv = require('dotenv').config()
 
 const app = express();
 const server = http.createServer(app); // Create HTTP server
@@ -44,7 +45,7 @@ io.on('connection', (socket) => {
 });
 
 // Start server after DB connection
-const PORT = 4500;
+const PORT = process.env.PORT;
 server.listen(PORT, async () => {
     try {
         await connectDB();
